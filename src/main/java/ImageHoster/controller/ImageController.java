@@ -94,13 +94,21 @@ public class ImageController {
     //The method first needs to convert the list of all the tags to a string containing all the tags separated by a comma and then add this string in a Model type object
     //This string is then displayed by 'edit.html' file as previous tags of an image
     @RequestMapping(value = "/editImage")
-    public String editImage(@RequestParam("imageId") Integer imageId, Model model) {
+    public String editImage(@RequestParam("imageId") Integer imageId, Model model, HttpSession session, RedirectAttributes redirectAttrs) {
         Image image = imageService.getImage(imageId);
 
-        String tags = convertTagsToString(image.getTags());
-        model.addAttribute("image", image);
-        model.addAttribute("tags", tags);
-        return "images/edit";
+        if(isImageOwner(imageId, session)) {
+            String tags = convertTagsToString(image.getTags());
+            model.addAttribute("image", image);
+            model.addAttribute("tags", tags);
+            return "images/edit";
+        } else {
+            String imageTitle = imageService.getImage(imageId).getTitle();
+            String error = "Only the owner of the image can edit the image";
+            redirectAttrs.addAttribute("editError", error).addFlashAttribute("editError", error);
+            return "redirect:/images/" + imageId + '/' + imageTitle;
+        }
+
     }
 
     //This controller method is called when the request pattern is of type 'images/edit' and also the incoming request is of PUT type
