@@ -63,6 +63,7 @@ public class ImageRepository {
     //The method creates an instance of EntityManager
     //Executes JPQL query to fetch the image from the database with corresponding id
     //Returns the image fetched from the database
+
     public Image getImage(Integer imageId) {
         EntityManager em = emf.createEntityManager();
         TypedQuery<Image> typedQuery = em.createQuery("SELECT i from Image i where i.id =:imageId", Image.class).setParameter("imageId", imageId);
