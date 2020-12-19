@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 @Controller
@@ -41,7 +43,24 @@ public class UserController {
     //This method calls the business logic and after the user record is persisted in the database, directs to login page
     @RequestMapping(value = "users/registration", method = RequestMethod.POST)
     public String registerUser(User user) {
-        userService.registerUser(user);
+        if(isPasswordSecure(user.getPassword())) {
+            userService.registerUser(user);
+            return "users/login";
+        } else {
+            String error = "Password must contain atleast 1 alphabet, 1 number & 1 special character";
+            redirectAttrs.addAttribute("passwordTypeError", error).addFlashAttribute("passwordTypeError", error);
+            return "redirect:/users/registration";
+        }
+    }
+    private Boolean isPasswordSecure(String userPassword) {
+        Pattern pattern = Pattern.compile("(?=.*[a-z])(?=.*[0-9])(?=.*[^a-z0-9])", Pattern.CASE_INSENSITIVE);
+        Matcher matching = pattern.matcher(userPassword);
+
+
+        return matching.find();
+
+    }
+
         return "redirect:/users/login";
     }
 
