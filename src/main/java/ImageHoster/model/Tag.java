@@ -34,9 +34,6 @@ public class Tag {
         this.name = tagName;
     }
 
-    public Tag(String tagName) {
-        this.name = tagName;
-    }
 
     public int getId() {
         return id;
