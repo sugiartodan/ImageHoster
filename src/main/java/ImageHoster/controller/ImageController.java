@@ -168,7 +168,7 @@ public class ImageController {
 
     }
 
-    private Boolean isImageOwner(Integer imageId, HttpSession session) throws IOException{
+    private Boolean isImageOwner(Integer imageId, HttpSession session) {
             Image currentImage = imageService.getImage(imageId);
             Integer currentImageUserId = currentImage.getUser().getId();
             User loggedInUser = (User) session.getAttribute("loggeduser");
