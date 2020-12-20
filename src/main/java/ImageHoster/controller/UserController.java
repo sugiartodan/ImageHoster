@@ -62,8 +62,8 @@ public class UserController {
 
     }
 
-        return "redirect:/users/login";
-    }
+
+
 
     //This controller method is called when the request pattern is of type 'users/login'
     @RequestMapping("users/login")
