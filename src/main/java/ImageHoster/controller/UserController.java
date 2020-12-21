@@ -56,11 +56,16 @@ public class UserController {
 
     //method to validate whether password combo created meet criteria.
     private Boolean isPasswordSecure(String userPassword) {
+
+        //compiles the given regex and returns the instance of the Pattern.
         Pattern pattern = Pattern.compile("(?=.*[a-z])(?=.*[0-9])(?=.*[^a-z0-9])", Pattern.CASE_INSENSITIVE);
+
+        //creates a matcher that matches the given input with the pattern.
         Matcher matching = pattern.matcher(userPassword);
 
+        return matching.find(); //The find() method of Matcher Class attempts to find the next subsequence of the input sequence that find the pattern. It returns a boolean value showing the same.
 
-        return matching.find();
+
 
     }
 
