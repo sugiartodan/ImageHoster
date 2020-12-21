@@ -44,7 +44,7 @@ public class UserController {
     //This method calls the business logic and after the user record is persisted in the database, directs to login page
     @RequestMapping(value = "users/registration", method = RequestMethod.POST)
     public String registerUser(User user, RedirectAttributes redirectAttrs) {
-        if(isPasswordSecure(user.getPassword())) {
+        if(isPasswordSecure(user.getPassword())) {   //calls isPasswordSecure method for validation purposes.
             userService.registerUser(user);
             return "users/login";
         } else {
@@ -53,6 +53,8 @@ public class UserController {
             return "redirect:/users/registration";
         }
     }
+
+    //method to validate whether password combo created meet criteria.
     private Boolean isPasswordSecure(String userPassword) {
         Pattern pattern = Pattern.compile("(?=.*[a-z])(?=.*[0-9])(?=.*[^a-z0-9])", Pattern.CASE_INSENSITIVE);
         Matcher matching = pattern.matcher(userPassword);
