@@ -14,15 +14,15 @@ public class Comment {
     @Column(name="text")
     private String text;
 
-    @Column(name="dateCreated")
+    @Column(name="created_at")
     private LocalDate createdDate;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="imageId")
+    @JoinColumn(name="image_id")
     private Image image;
 
     public Integer getId() {
