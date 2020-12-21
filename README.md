@@ -1,10 +1,10 @@
 # ImageHoster
 
-Assignment - Software Engineering Frameworks and Server Side Development
+## Assignment - Software Engineering Frameworks and Server Side Development
 
-To-Do Tasks
+### To-Do Tasks
 
-Part A: Fixing Issues
+**Part A: Fixing Issues**
 
 1. Image upload issues:
 
@@ -40,7 +40,7 @@ Observe the message when non-owner of the image is trying to edit the image as s
 
  
 
-Part B: Implement a new feature
+**Part B: Implement a new feature**
 After fixing the above issues, please implement the following features into the image uploader application:
 
 1.  Password Strength
